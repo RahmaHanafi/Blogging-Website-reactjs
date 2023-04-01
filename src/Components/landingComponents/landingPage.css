@@ -1,0 +1,55 @@
+div.bg {
+  background: url("../../assets/background.svg") no-repeat center center fixed;
+  height: 100vh;
+  object-fit: contain;
+  margin: 0;
+  padding: 0;
+}
+
+.mov {
+  animation: moving 0.5s;
+}
+
+.appearPage {
+  animation: appear 0.5s;
+}
+
+@keyframes moving {
+  from {
+    transform: translateX(25px);
+    /* transform: scaleY(1); */
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-600px);
+    /* transform: scaleY(0); */
+    opacity: 0;
+  }
+}
+
+@keyframes appear {
+  from {
+    transform: translateX(-600px);
+    /* transform: scaleY(0); */
+    opacity: 0;
+  }
+  to {
+    /* transform: scaleY(1); */
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .landingEle {
+    display: flex;
+    justify-content: center;
+    width: 100rem;
+  }
+  .landingImg {
+    display: none;
+  }
+}
+
+.paper {
+  width: 24rem;
+}

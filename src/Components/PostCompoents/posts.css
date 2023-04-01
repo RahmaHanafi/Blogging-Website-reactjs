@@ -1,0 +1,45 @@
+.bg1 {
+  background-color: rgba(239, 228, 228, 0.345);
+}
+
+h6 {
+  margin-bottom: 0.2rem;
+}
+
+h6.date {
+  font-size: 0.85em;
+}
+
+/* .post {
+  width: 40rem;
+} */
+
+/* .post-img {
+  width: 39.9rem;
+} */
+
+.title {
+  color: #44118c;
+}
+
+.edit:hover {
+  color: #ffc107;
+}
+.remove:hover {
+  color: #b71c1c;
+}
+
+i {
+  font-size: medium;
+}
+/* .Homebg {
+  background-color: #f8f9fa;
+} */
+
+.postImgClass {
+  position: relative;
+}
+
+.DeleteImgIcon {
+  position: absolute;
+}

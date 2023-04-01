@@ -1,0 +1,18 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 800" width="1650" height="1000">
+	<title>311-ai</title>
+	<defs>
+		<linearGradient id="g1" x1="988.7" y1="1231.8" x2="-249.5" y2="295.7" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#45108a"/>
+			<stop offset=".3" stop-color="#3d065f"/>
+			<stop offset="1" stop-color="#10054d"/>
+		</linearGradient>
+	</defs>
+	<style>
+		.s0 { fill: url(#g1) } 
+	</style>
+	<g id="_Artboards_">
+	</g>
+	<g id="Layer 1">
+		<path id="&lt;Path&gt;" class="s0" d="m1320 800h-1320v-800h1320z"/>
+	</g>
+</svg>

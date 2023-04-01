@@ -1,0 +1,50 @@
+nav {
+  background-color: #44118c;
+}
+
+div.nav-bg {
+  background-color: #44118c;
+}
+
+.margin-right {
+  margin-right: 16px !important;
+}
+
+.logo-img {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.userName {
+  font-size: 1.05rem;
+  /* font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif; */
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+
+  font-weight: 700;
+}
+
+.dialogClass {
+  /* position: fixed;  */
+  /* padding-right: 16 px !important; */
+  /* right: -10px !important; */
+}
+
+.navbar-brand {
+  font-family: cursive, monospace, "Trebuchet MS", "Lucida Sans Unicode",
+    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+/* .floatingButton {
+  right: 0 !important;
+} */
+
+.read-or-hide {
+  color: rgb(192, 192, 192);
+  cursor: pointer;
+}
+
+.text {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
