@@ -9,6 +9,7 @@ import CreatePost from "../../Components/PostCompoents/createPost";
 import jwt from "jwt-decode";
 import ScrollButton from "../../Components/scrollFloatingButton";
 import { Grid } from "@mui/material";
+import Footer from "../../Components/footer";
 
 export default function Home() {
   const [postData, setPostData] = React.useState([]);
@@ -63,7 +64,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="bg-light pt-4 mt-2  pb-4">
+      <div className="bg-light pt-4 mt-2  pb-0">
         <Grid container marginTop={5} direction={"row"} justifyContent="center">
           <Grid item lg={5} md={7} sm={8} xs={12}>
             <NavBar
@@ -109,6 +110,7 @@ export default function Home() {
         <div className=" d-flex flex-row-reverse mb-2 me-5">
           <ScrollButton></ScrollButton>
         </div>
+        <Footer></Footer>
       </div>
     </>
   );

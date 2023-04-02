@@ -6,6 +6,10 @@ div.nav-bg {
   background-color: #44118c;
 }
 
+.nav-bg {
+  background-color: #cac8cc;
+}
+
 .margin-right {
   margin-right: 16px !important;
 }
