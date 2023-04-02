@@ -13,7 +13,10 @@ export default function NavBar({ profileImg, userName }) {
       <nav className="navbar navbar-dark fixed-top shadow">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/home">
-            <img src="../src/assets/bloglogo.png" className="logo-img "></img>
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/4494/4494539.png"
+              className="logo-img "
+            ></img>
             Blogger
           </Link>
           <button

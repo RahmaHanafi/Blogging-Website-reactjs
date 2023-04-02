@@ -80,7 +80,7 @@ export default function Home() {
             {postData.length === 0 ? (
               <div className="my-5 mx-auto px-auto ">
                 <img
-                  src="../../src/assets/noPosts1.svg"
+                  src="https://firebasestorage.googleapis.com/v0/b/blog-5addf.appspot.com/o/images%2Fc6b872fe-93c5-4d84-b867-d72aa4ba75ce-noPosts1.svg?alt=media&token=0fad5161-cd1b-4f77-832b-3bf28338dd77"
                   className="w-50 d-flex mx-auto "
                 ></img>
                 <h3 className="text-muted text-center mb-5 pb-5">
