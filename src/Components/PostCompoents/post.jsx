@@ -44,14 +44,14 @@ export default function Post({
   return (
     <>
       <div className="bg-white border border-secondary-subtle rounded-4 mt-3">
-        <div className="post-user d-flex gap-2 p-3">
+        <div className="post-user d-flex gap-1 p-3">
           <Avatar alt={userName} src={profileImg} />
-          <div className="gap-0">
+          <div className="gap-0 ps-1">
             <h6 className="fw-bold">{userName}</h6>
             <h6 className="text-secondary date">{localDate}</h6>
           </div>
           {postOwnerId === UserId ? (
-            <div className="ms-auto">
+            <div className="ms-auto d-flex">
               <IconButton
                 variant="outlined"
                 onClick={() => {
