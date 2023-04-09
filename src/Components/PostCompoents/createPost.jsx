@@ -78,7 +78,7 @@ export default function CreatePost({
 
   return (
     <>
-      <div className="d-flex mx-auto gap-3 border border-muted rounded-4 bg-white p-3">
+      <div className="d-flex mx-auto gap-3 border border-muted rounded-5 bg-white p-3">
         <Avatar alt={userName} src={profileImg}></Avatar>
         <Button
           className="w-100 text-secondary text-capitalize rounded-5 bg-light"

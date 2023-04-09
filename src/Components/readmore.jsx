@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./PostCompoents/posts.css";
 import "./../App.css";
 
 export default function ReadMore({ children }) {
@@ -8,8 +9,8 @@ export default function ReadMore({ children }) {
     setIsReadMore(!isReadMore);
   };
   return (
-    <p className="text">
-      {isReadMore ? text.slice(0, 150) : text}
+    <p className="text content">
+      {isReadMore ? text.slice(0, 120) : text}
       <span onClick={toggleReadMore} className="read-or-hide">
         {isReadMore ? "...read more" : " show less"}
       </span>

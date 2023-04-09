@@ -52,3 +52,42 @@ div.nav-bg {
 .text {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.navBg {
+  /* background: url("./assets/background.svg") no-repeat center center;*/
+
+  height: 60vh;
+
+  background-image: linear-gradient(
+      to bottom,
+      rgba(245, 246, 252, 0.252),
+      #44118c5b
+    ),
+    url("https://img.freepik.com/free-photo/woman-desktop-with-laptop-morning-coffee-tulips-violet-background-flat-lay-spring-holiday-mother-day_501050-443.jpg?w=1060&t=st=1681039542~exp=1681040142~hmac=b2a12d6e279f8cc641b226153396c88ef768f7e98f7bb64e8a9c6562381fb839");
+  /* background-image: url("https://img.freepik.com/free-photo/desk-workspace-with-various-elements_23-2148043207.jpg?w=1060&t=st=1680628042~exp=1680628642~hmac=9ae4547f830c2e0bfb89d05336f6b54714f22e30870c5da6071d809cd9f5f21c"); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+}
+
+.appBar-Bg {
+  background: url("./assets/background.svg") no-repeat center center;
+  object-fit: contain;
+  margin: 0;
+  padding: 0;
+}
+
+.home-Bg {
+  position: relative;
+  top: -20rem;
+  margin: 0;
+  padding: 0;
+}
+
+.profileImage {
+  width: 11rem;
+  height: 11rem;
+  object-fit: cover;
+  border: 5px solid #cac8cc7b;
+}

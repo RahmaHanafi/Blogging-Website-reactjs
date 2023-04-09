@@ -43,8 +43,8 @@ export default function Post({
 
   return (
     <>
-      <div className="bg-white border border-secondary-subtle rounded-4 mt-3">
-        <div className="post-user d-flex gap-1 p-3">
+      <div className="post bg-white  mt-3 rounded-4 pb-3">
+        {/* <div className="post-user d-flex gap-1 p-3">
           <Avatar alt={userName} src={profileImg} />
           <div className="gap-0 ps-1">
             <h6 className="fw-bold">{userName}</h6>
@@ -75,12 +75,49 @@ export default function Post({
           ) : (
             ""
           )}
-        </div>
-        <h6 className="px-3 fw-bold title">{Title}</h6>
-        <div className="px-3">
+        </div> */}
+
+        <img className="post-img w-100 rounded-top-4" src={postImg} />
+
+        <p className="px-4  text-capitalize title py-0 pt-4">{Title}</p>
+        <div className="px-4 pb-1 mt-0 ">
           {content.length > 160 ? <ReadMore>{content}</ReadMore> : content}
         </div>
-        <img className="post-img w-100 pb-5 pt-1" src={postImg} />
+
+        <div className="post-user d-flex gap-1 px-4">
+          <Avatar alt={userName} src={profileImg} />
+          <div className="gap-0 ps-1">
+            <h6 className="username">{userName}</h6>
+            <p className="text-secondary date">{localDate}</p>
+          </div>
+          {postOwnerId === UserId ? (
+            <div className="ms-auto d-flex">
+              <IconButton
+                variant="outlined"
+                onClick={() => {
+                  setIsUpdateOrDel("update");
+                  handleClickOpen();
+                }}
+                className="button"
+              >
+                <i className="fa-solid fa-marker edit"></i>
+              </IconButton>
+
+              <IconButton
+                variant="outlined"
+                onClick={() => {
+                  setIsUpdateOrDel("delete");
+                  handleClickOpen();
+                }}
+                className="button"
+              >
+                <i className="fa-regular fa-trash-can remove"></i>
+              </IconButton>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
 
       {IsUpdateOrDel === "update" ? (
