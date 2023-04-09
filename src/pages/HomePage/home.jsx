@@ -59,9 +59,8 @@ export default function Home() {
 
       setUserData(data.user);
     }
-
+    getUserByToken();
     return () => {
-      getUserByToken();
       console.log("effect clean get User By Token");
     };
   }, [getUserData]);
