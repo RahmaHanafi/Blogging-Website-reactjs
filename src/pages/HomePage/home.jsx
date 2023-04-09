@@ -20,6 +20,9 @@ export default function Home() {
   const [getAllPosts, setgetAllPosts] = React.useState(false);
   const handlegetAllPosts = () => setgetAllPosts((show) => !show);
 
+  const [getUserData, setgetUserData] = React.useState(false);
+  const handlegetUserData = () => setgetUserData((show) => !show);
+
   const [UserId, setUserId] = React.useState([]);
 
   React.useEffect(() => {
@@ -32,11 +35,11 @@ export default function Home() {
       setPostData(data);
     }
 
+    getPosts();
     return () => {
-      getPosts();
       console.log("effect clean get posts");
     };
-  }, [getAllPosts]);
+  }, [getAllPosts, getUserData]);
 
   React.useEffect(() => {
     let token = localStorage.getItem("token");
@@ -61,19 +64,36 @@ export default function Home() {
       getUserByToken();
       console.log("effect clean get User By Token");
     };
-  }, []);
+  }, [getUserData]);
 
   return (
     <>
       <div className="bg-light pb-0">
-        <NavBar profileImg={UserData.profileImg} userName={UserData.userName} />
-        <div className="navBg"></div>
+        <div className="navBg">
+          <NavBar
+            profileImage={UserData.profileImg}
+            userName={UserData.userName}
+            handlegetUserData={handlegetUserData}
+          />
+        </div>
         <Grid
           container
           justifyContent="center"
           className="home-Bg mt-5 pt-5 pb-5"
         >
           <Grid item lg={4} md={7} sm={8} xs={10}>
+            <div className=" mb-1 mt-4  d-flex justify-content-center">
+              {/* <img
+                src="https://readme-typing-svg.demolab.com?font=Alkatra&size=30&pause=700&color=F7F7F7&center=true&multiline=true&repeat=false&width=435&lines=Welcome+to+the+Blogging+Site;++++"
+                alt="Typing SVG"
+              /> */}
+
+              <img
+                src="https://readme-typing-svg.demolab.com?font=Dancing+Script&size=31&pause=700&color=F7F7F7&center=true&vCenter=true&multiline=true&repeat=false&width=435&lines=Welcome+to+the+Blogging+Site"
+                alt="Typing SVG"
+              />
+            </div>
+
             <CreatePost
               profileImg={UserData.profileImg}
               userName={UserData.userName}
@@ -84,7 +104,6 @@ export default function Home() {
 
         <Grid
           container
-          // direction={"row"}
           justifyContent="center"
           className="home-Bg mt-5"
           spacing={3}
@@ -120,10 +139,7 @@ export default function Home() {
             ))
           )}
         </Grid>
-
-        <div className=" d-flex flex-row-reverse mb-2 me-5">
-          <ScrollButton></ScrollButton>
-        </div>
+        <ScrollButton></ScrollButton>
         <Footer></Footer>
       </div>
     </>

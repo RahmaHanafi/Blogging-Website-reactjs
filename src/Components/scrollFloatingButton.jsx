@@ -24,17 +24,18 @@ export default function ScrollButton() {
 
   return (
     <>
-      <div className={"d-flex flex-row-reverse"}>
+      <div className="d-flex flex-row-reverse ">
         <Fab
           color="secondary"
           aria-label="up"
           onClick={scrollToTop}
           size="small"
           sx={{
-            position: visible ? "sticky" : "none",
+            position: visible ? "fixed" : "none",
             bottom: 0,
             right: 0,
             marginBottom: 5,
+            marginRight: 5,
           }}
         >
           <i className="fa-solid fa-angle-up"></i>

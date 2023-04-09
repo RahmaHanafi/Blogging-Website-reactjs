@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import "./../../App.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 import AppBar from "@mui/material/AppBar";
@@ -10,33 +10,76 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import notifySuccess from "../notify/notifySuccess";
+import {
+  CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+} from "@mui/material";
+import uploadImg from "../PostCompoents/uploadImage";
+import { ToastContainer } from "react-toastify";
+import notifyError from "../notify/notifyError";
+import axios from "axios";
 
 const pages = [];
-const settings = ["Profile", "Logout"];
-// "Products", "Pricing", "Blog"
+const settings = ["update profile picture", "Logout"];
 
-export default function NavBar({ profileImg, userName }) {
+export default function NavBar({ profileImage, userName, handlegetUserData }) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const [loading, setLoading] = React.useState(false);
+  const handleLoading = () => setLoading((show) => !show);
+
+  const [profileImg, setprofileImg] = React.useState(profileImage);
+
+  const NewProfileImg = async (e) => {
+    let token = localStorage.getItem("token");
+
+    e.preventDefault();
+    const userImg = {
+      profileImg,
+    };
+    console.log(userImg);
+    try {
+      const { data } = await axios.patch(
+        "https://blogservice-tvsr.onrender.com/user/uploadProfileImage",
+        userImg,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      console.log(data);
+
+      handlegetUserData();
+      notifySuccess("Update profile picture successfully");
+    } catch (e) {
+      notifyError("failed");
+      console.log(e);
+    }
+  };
+
   const navigate = useNavigate();
 
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -63,16 +106,12 @@ export default function NavBar({ profileImg, userName }) {
         style={{
           background: visible ? "#8C6AB1" : "transparent",
         }}
-
-        // className={visible ? "appBar-Bg" : " "}
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography
               variant="h6"
               noWrap
-              // component="Link"
-              // to="/home"
               sx={{
                 gap: 1,
                 mr: 2,
@@ -93,78 +132,6 @@ export default function NavBar({ profileImg, userName }) {
               Blogger
             </Typography>
 
-            {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: "block", md: "none" },
-                }}
-              >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/home"
-              sx={{
-                gap: 1,
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "cursive",
-                fontWeight: 700,
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/2111/2111260.png"
-                className="logo-img "
-              />
-              Blogger
-            </Typography>
-
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page}
-                </Button>
-              ))}
-            </Box> */}
-
             <Box sx={{ flexGrow: 0 }} className="d-flex  ms-auto">
               <Typography
                 variant="h6"
@@ -183,7 +150,7 @@ export default function NavBar({ profileImg, userName }) {
               </Typography>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt={userName} src={profileImg} />
+                  <Avatar alt={userName} src={profileImage} />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -213,9 +180,7 @@ export default function NavBar({ profileImg, userName }) {
                               navigate("/", { replace: true });
                             }
                           : () => {
-                              navigate("/profile", {
-                                state: { profileImg, userName },
-                              });
+                              handleClickOpen();
                             }
                       }
                     >
@@ -228,80 +193,79 @@ export default function NavBar({ profileImg, userName }) {
           </Toolbar>
         </Container>
       </AppBar>
-      {/* <nav className="navbar navbar-dark fixed-top shadow">
-        <div className="container-fluid">
-          <Link className="navbar-brand" to="/home">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/4494/4494539.png"
-              className="logo-img "
-            ></img>
-            Blogger
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div
-            className="offcanvas offcanvas-end nav-bg text-white"
-            tabIndex="-1"
-            id="offcanvasNavbar"
-            aria-labelledby="offcanvasNavbarLabel"
-          >
-            <div className="offcanvas-header ">
-              <Avatar alt={userName} src={profileImg} />
-              <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
-                {userName}
-              </h5>
-              <button
-                type="button"
-                className="btn-close btn-close-white"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="offcanvas-body">
-              <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li className="nav-item">
-                  <Button
-                    className="text-white"
-                    startIcon={
-                      <i className="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal"></i>
-                    }
-                    onClick={() => {
-                      localStorage.clear();
-                      navigate("/", { replace: true });
-                    }}
-                  >
-                    Logout
-                  </Button>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </nav> */}
+      <Dialog open={open} keepMounted onClose={handleClose}>
+        <DialogTitle>{"Update Profile Picture"}</DialogTitle>
 
-      {/* <nav className="navbar bg-body-tertiary fixed-top shadow">
-        <div className="container">
-          <div className="logo gap-2 d-flex">
-            <img src="../src/assets/bloglogo.png" className="logo-img"></img>
-            <a className="navbar-brand text-white" href="#">
-              Blogger
-            </a>
-          </div>
+        <Box
+          sx={{
+            minWidth: 310,
+            maxWidth: 530,
+          }}
+        >
+          <div className="px-4 pb-3 d-flex flex-column "></div>
+          {profileImg ? (
+            <div>
+              <IconButton
+                className="DeleteImgIcon ms-5"
+                variant="outlined"
+                onClick={() => {
+                  setprofileImg("");
+                }}
+              >
+                {" "}
+                <i className="fa-solid fa-xmark"></i>
+              </IconButton>
+              <img
+                src={profileImg}
+                className="rounded-3 w-75 d-flex mx-auto postImgClass"
+              />
+            </div>
+          ) : loading ? (
+            <CircularProgress color="secondary" className="d-flex mx-auto" />
+          ) : (
+            ""
+          )}
+        </Box>
+        <DialogActions className="me-3 mb-3 gap-2">
+          <Button
+            variant="outlined"
+            color="secondary"
+            className=" text-capitalize "
+            startIcon={<i className="fa-regular fa-image"></i>}
+            component="label"
+          >
+            Upload
+            <input
+              hidden
+              accept="image/*"
+              multiple
+              type="file"
+              onChange={(e) => {
+                const file = e.target.files[0];
+                uploadImg(file, setprofileImg, handleLoading);
+                console.log(file);
+                handleLoading();
+              }}
+            />
+          </Button>
 
-          <div className="ms-auto d-flex gap-2">
-            <h6 className="text-white userName py-2">{userName}</h6>
-            <Avatar alt={userName} src={profileImg} />
-          </div>
-        </div>
-      </nav> */}
+          {profileImg ? (
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={(e) => {
+                NewProfileImg(e);
+                handleClose();
+              }}
+            >
+              OK
+            </Button>
+          ) : (
+            <Button disabled>OK</Button>
+          )}
+        </DialogActions>
+      </Dialog>
+      <ToastContainer />
     </>
   );
 }

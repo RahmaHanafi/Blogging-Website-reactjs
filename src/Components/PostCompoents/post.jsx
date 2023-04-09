@@ -40,6 +40,7 @@ export default function Post({
   });
 
   localDate = localDate.replace("Eastern European Standard Time", " ");
+  localDate = localDate.replace("at ", " ");
 
   return (
     <>
@@ -80,7 +81,7 @@ export default function Post({
         <img className="post-img w-100 rounded-top-4" src={postImg} />
 
         <p className="px-4  text-capitalize title py-0 pt-4">{Title}</p>
-        <div className="px-4 pb-1 mt-0 ">
+        <div className="px-4 pb-1 mt-0 content">
           {content.length > 160 ? <ReadMore>{content}</ReadMore> : content}
         </div>
 
@@ -91,7 +92,7 @@ export default function Post({
             <p className="text-secondary date">{localDate}</p>
           </div>
           {postOwnerId === UserId ? (
-            <div className="ms-auto d-flex">
+            <div className="ms-auto d-flex gap-1">
               <IconButton
                 variant="outlined"
                 onClick={() => {

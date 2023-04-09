@@ -160,7 +160,7 @@ export default function UpdatePost({
             />
           </Button>
 
-          {postImg || content ? (
+          {postImg && content && Title ? (
             <Button
               variant="contained"
               color="secondary"

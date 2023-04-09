@@ -18,7 +18,11 @@ h6 {
   /* color: #43256e; */
   font-size: 1.3rem;
   font-family: "Times New Roman", Times, serif;
-  line-height: 0.1;
+  /* line-height: 0.1; */
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .content {
