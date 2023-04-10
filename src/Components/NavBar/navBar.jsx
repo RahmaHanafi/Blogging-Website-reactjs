@@ -27,9 +27,6 @@ import { ToastContainer } from "react-toastify";
 import notifyError from "../notify/notifyError";
 import axios from "axios";
 
-const pages = [];
-const settings = ["update profile picture", "Logout"];
-
 export default function NavBar({ profileImage, userName, handlegetUserData }) {
   const [open, setOpen] = React.useState(false);
 
@@ -169,25 +166,25 @@ export default function NavBar({ profileImage, userName, handlegetUserData }) {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography
-                      textAlign="center"
-                      onClick={
-                        setting == "Logout"
-                          ? () => {
-                              localStorage.clear();
-                              navigate("/", { replace: true });
-                            }
-                          : () => {
-                              handleClickOpen();
-                            }
-                      }
-                    >
-                      {setting}
-                    </Typography>
-                  </MenuItem>
-                ))}
+                <MenuItem
+                  onClick={(e) => {
+                    handleCloseUserMenu();
+                    handleClickOpen();
+                    console.log(e);
+                  }}
+                >
+                  Update profile picture
+                </MenuItem>
+                <MenuItem
+                  onClick={(e) => {
+                    handleCloseUserMenu();
+                    localStorage.clear();
+                    console.log(e);
+                    navigate("/", { replace: true });
+                  }}
+                >
+                  Logout
+                </MenuItem>
               </Menu>
             </Box>
           </Toolbar>
