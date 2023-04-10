@@ -21,7 +21,10 @@ export default function LandingPage() {
         </div>
 
         <div className="landingImg">
-          <img src="../../src/assets/phone.svg" alt="" />
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/blog-5addf.appspot.com/o/images%2Fphone.svg?alt=media&token=2dd2186f-ada5-454c-ae45-3bc2049e9c42"
+            alt=""
+          />
         </div>
       </div>
     </>
