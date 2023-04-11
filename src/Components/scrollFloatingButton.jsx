@@ -29,7 +29,7 @@ export default function ScrollButton() {
           color="secondary"
           aria-label="up"
           onClick={scrollToTop}
-          size="small"
+          size="medium"
           sx={{
             position: visible ? "fixed" : "none",
             bottom: 0,
